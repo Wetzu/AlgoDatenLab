@@ -3,6 +3,7 @@ package de.hska.iwi.ads.solution.interfaces;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import java.lang.IllegalArgumentException;
 
 /**
  * A few simple tests for Circle.
@@ -20,9 +21,12 @@ class CircleTest {
   void testCircleDouble() {
     try{
         Circle testCircle = new Circle(-10);
+        fail();
     }
     catch (IllegalArgumentException e){
-        System.out.println("Negative radius not Allowed \n"+e);
+    }
+    catch (Exception e){
+      fail();
     }
   }
   
@@ -36,7 +40,7 @@ class CircleTest {
   void testScale1() {
     Circle testCircle = new Circle(1.5);
     testCircle.scale(2);
-    System.out.println(testCircle.getDimension());
+    assertEquals(3, testCircle.getDimension());
   }
 
   /*
@@ -46,8 +50,7 @@ class CircleTest {
   @Test
   void testArea1() {
     Circle testCircle = new Circle(1);
-      System.out.println("Pi: "+Math.PI);
-      System.out.println("Area: "+testCircle.area());
+    assertEquals(Math.PI, testCircle.area());
   }
 
   /*
@@ -57,8 +60,7 @@ class CircleTest {
   @Test
   void testArea2() {
     Circle testCircle = new Circle(2.0);
-    System.out.println("4.0 * Math.Pi: "+4.0*Math.PI);
-    System.out.println("Area: "+testCircle.area());
+    assertEquals(4.0 * Math.PI, testCircle.area());
   }
 
   /*
@@ -68,7 +70,7 @@ class CircleTest {
   @Test
   void testGetRadius1() {
     Circle testCircle = new Circle(1.0);
-    System.out.println(testCircle.getDimension());
+    assertEquals(1.0, testCircle.getDimension());
   }
 
 }
