@@ -9,7 +9,7 @@ public interface Search<E extends Comparable<E>> {
    * in either of the following cases:
    * <ol>
    *   <li> a[i - 1] < key < a[i] with left < i < right,</li>
-   *   <li> i = left - 1 if key < a[left], or</li>
+   *   <li> i = left - 1 if key < a[left], or/<li>
    *   <li> i = right + 1 if a[right] < key</li>
    * </ol>
    * @param a  sorted in ascending order given by the Comparable<E> implementation 

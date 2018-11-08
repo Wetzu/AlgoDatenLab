@@ -14,7 +14,8 @@ public class ReverseArray implements Reverse {
         }
         bufferCounter = 0;
         for(int i = from; i <= to; i++){
-            //a[i] = bufferCounter[]
+            a[i] = buffer[bufferCounter];
+            bufferCounter++;
         }
     }
 }
