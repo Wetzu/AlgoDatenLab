@@ -15,6 +15,11 @@ public abstract class AbstractMergesort<E extends Comparable<E>> implements Sort
     mergesort(a, 0, a.length - 1);
   }
 
+  public void sort(E [] a, int left, int right){
+    b = a.clone();
+    mergesort(a, left, right);
+  }
+
   protected abstract void mergesort(E [] a, int left, int right);  
   
 }
