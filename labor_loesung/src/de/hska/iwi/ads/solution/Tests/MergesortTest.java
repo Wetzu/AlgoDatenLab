@@ -1,5 +1,6 @@
-package de.hska.iwi.ads.solution.sorting;
+package de.hska.iwi.ads.solution.Tests;
 
+import de.hska.iwi.ads.solution.sorting.Mergesort;
 import de.hska.iwi.ads.sorting.Sort;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class MergesortTest {
+public class MergesortTest extends SortTest {
     /*
     Created by:
         Johannes Essig
@@ -23,16 +24,4 @@ public class MergesortTest {
     public <E extends Comparable<E>> Mergesort<E> createSort() {
         return new Mergesort();
     }
-
-    @Test
-    void testSortIntegerArray() {
-        Mergesort<Integer> sort = createSort();
-        Integer[] a = {7, 9, 2, 0, 4, 11, 10};
-        Integer[] b = {0, 2, 4, 7, 9, 10, 11};
-        sort.sort(a);
-
-        assertArrayEquals(b , a);
-    }
-
-
 }

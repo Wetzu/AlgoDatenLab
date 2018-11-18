@@ -1,9 +1,10 @@
-package de.hska.iwi.ads.solution.interfaces;
+package de.hska.iwi.ads.solution.Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import de.hska.iwi.ads.interfaces.Vector;
 import de.hska.iwi.ads.interfaces.VectorTest;
+import de.hska.iwi.ads.solution.interfaces.CartesianVector;
 import org.junit.jupiter.api.Test;
 
 public class CartesianVectorTest extends VectorTest {

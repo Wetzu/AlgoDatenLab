@@ -1,7 +1,8 @@
-package de.hska.iwi.ads.solution.interfaces;
+package de.hska.iwi.ads.solution.Tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import de.hska.iwi.ads.solution.interfaces.Circle;
 import org.junit.jupiter.api.Test;
 import java.lang.IllegalArgumentException;
 

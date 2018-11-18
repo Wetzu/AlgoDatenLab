@@ -1,7 +1,8 @@
-package de.hska.iwi.ads.solution.search;
+package de.hska.iwi.ads.solution.Tests;
 
 import de.hska.iwi.ads.search.Search;
 import de.hska.iwi.ads.search.SearchTest;
+import de.hska.iwi.ads.solution.search.BinarySearch;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

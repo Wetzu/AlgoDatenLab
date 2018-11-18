@@ -5,17 +5,23 @@ import de.hska.iwi.ads.sorting.Reverse;
 public class ReverseArray implements Reverse {
     @Override
     public void reverse(Comparable[] a, int from, int to) {
-        int length = to - from;
-        Comparable[] buffer = new Comparable[length];
-        int bufferCounter = length - 1;
-        for(int i = from; i <= to; i++){
+        Comparable[] buffer = a.clone();
+        int bufferCounter = to;
+        for(int i = from; i <= to; i++, bufferCounter--){
             buffer[bufferCounter] = a[i];
-            bufferCounter--;
         }
-        bufferCounter = 0;
-        for(int i = from; i <= to; i++){
+        bufferCounter = from;
+        for(int i = from; i <= to; i++, bufferCounter++){
             a[i] = buffer[bufferCounter];
-            bufferCounter++;
+        }
+    }
+
+    public static void main(String[] args){
+        Integer[] toReverse = {5, 4, 3, 2, 1};
+        ReverseArray test = new ReverseArray();
+        test.reverse(toReverse, 2, 4);
+        for(int i = 0; i < toReverse.length; i++){
+            System.out.print(toReverse[i] + ", ");
         }
     }
 }
