@@ -43,6 +43,15 @@ public abstract class SortTest {
         assertArrayEquals(b, a);
     }
     @Test
+    void testSortIntegerArray4() {
+        Sort<Integer> sort = createSort();
+        Integer[] a = {-5, 3, -8, -10, 9, -100};
+        Integer[] b = {-100, -10, -8, -5, 3, 9};
+        sort.sort(a);
+
+        assertArrayEquals(b, a);
+    }
+    @Test
     void testSortStringArray1() {
         Sort<String> sort = createSort();
         String[] a = {"a", "z", "A", "E", "l"};
@@ -80,10 +89,28 @@ public abstract class SortTest {
         assertArrayEquals(b, a);
     }
     @Test
-    void testEmptyArray1() {
+    void testSortEmptyArray1() {
         Sort<Integer> sort = createSort();
         Integer[] a = null;
 
         assertArrayEquals(a, a);
+    }
+    @Test
+    void testSortDoubleArray1() {
+        Sort<Double> sort = createSort();
+        Double[] a = {15.154, 2.456, 3.0, -5.3892, 1.125};
+        Double[] b = {-5.3892, 1.125, 2.456, 3.0, 15.154};
+        sort.sort(a);
+
+        assertArrayEquals(b, a);
+    }
+    @Test
+    void testSortDoubleArray2() {
+        Sort<Double> sort = createSort();
+        Double[] a = {3.00000000000002, 3.000000000000001, 3.00000000000005, 3.00000000000001};
+        Double[] b = {3.000000000000001, 3.00000000000001, 3.00000000000002, 3.00000000000005};
+        sort.sort(a);
+
+        assertArrayEquals(b, a);
     }
 }
