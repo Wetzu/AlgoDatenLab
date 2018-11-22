@@ -62,9 +62,9 @@ public abstract class SortTest {
     }
     @Test
     void testSortStringArray2() {
-        Sort<String> sort = createSort();
-        String[] a = {"F", "e", "A", "F"};
-        String[] b = {"A", "F", "F", "e"};
+        Sort<Character> sort = createSort();
+        Character[] a = {'F', 'e', 'A', 'F'};
+        Character[] b = {'A', 'F', 'F', 'e'};
         sort.sort(a);
 
         assertArrayEquals(b, a);
