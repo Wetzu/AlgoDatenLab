@@ -20,7 +20,6 @@ public class MergesortTest extends SortTest {
     Version V1
     created on 08.11.2018 at 20:48
     */
-
     public <E extends Comparable<E>> Mergesort<E> createSort() {
         return new Mergesort();
     }

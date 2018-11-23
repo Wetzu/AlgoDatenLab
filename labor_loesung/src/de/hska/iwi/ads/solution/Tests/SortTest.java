@@ -4,6 +4,9 @@ package de.hska.iwi.ads.solution.Tests;
 import de.hska.iwi.ads.sorting.Sort;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public abstract class SortTest {
@@ -11,8 +14,8 @@ public abstract class SortTest {
     Created by:
         Johannes Essig
         johannes@johannes-essig.de
-    Version 1.0
-    created on 17.11.2018 at 16:31
+    Version 1.3
+    created on 14.11.2018 at 15:31
     */
     public abstract <E extends Comparable<E>> Sort<E> createSort();
     @Test
@@ -112,5 +115,20 @@ public abstract class SortTest {
         sort.sort(a);
 
         assertArrayEquals(b, a);
+    }
+    @Test
+    void testRandomized() {
+        Sort<Integer> sort = createSort();
+        Integer[] a = new Integer[10001];
+        Random random = new Random();
+        for(int i = 0; i < 10001; i++){
+            a[i] = random.nextInt();
+        }
+        Integer[] b = a.clone();
+        sort.sort(a);
+        Arrays.sort(b);
+
+        assertArrayEquals(b, a);
+
     }
 }
