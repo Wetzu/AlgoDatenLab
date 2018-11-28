@@ -92,13 +92,6 @@ public abstract class SortTest {
         assertArrayEquals(b, a);
     }
     @Test
-    void testSortEmptyArray1() {
-        Sort<Integer> sort = createSort();
-        Integer[] a = null;
-
-        assertArrayEquals(a, a);
-    }
-    @Test
     void testSortDoubleArray1() {
         Sort<Double> sort = createSort();
         Double[] a = {15.154, 2.456, 3.0, -5.3892, 1.125};
