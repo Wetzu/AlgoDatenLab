@@ -2,14 +2,13 @@ package de.hska.iwi.ads.solution.list;
 
 import de.hska.iwi.ads.dictionary.AbstractDoubleLinkedList;
 
-import java.util.Iterator;
-
 public class DoubleLinkedList<K extends Comparable<K>, V> extends AbstractDoubleLinkedList<K, V> {
     @Override
     public V get(Object o){
         if (o == null) {        //check if key is null
             throw new NullPointerException();
         }
+        //noinspection unchecked
         Entry<K, V> entry = search((K) o);
         if (entry != null) {
             return entry.getValue();
@@ -21,7 +20,7 @@ public class DoubleLinkedList<K extends Comparable<K>, V> extends AbstractDouble
         if (key == null){       //check for nullPointer
             throw new NullPointerException();
         }
-        SimpleEntry<K, V> entry = new SimpleEntry<K, V>(key, value);
+        SimpleEntry<K, V> entry = new SimpleEntry<>(key, value);
         SimpleEntry<K, V> oldEntry = search(key);
         if (oldEntry != null) {             //look for old entry
             V oldValue = oldEntry.getValue();
