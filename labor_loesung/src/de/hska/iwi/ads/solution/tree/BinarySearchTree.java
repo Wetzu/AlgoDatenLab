@@ -17,13 +17,12 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractBinary
 
     private Node insertRecursive(Node node, K key, V value) {
         if (node == null) {     //checking for null
-            node = new Node(key, value);
-            return node;
+            return new Node(key, value);
         }
 
-        if (key.compareTo(node.entry.getKey()) < 0) {   //recursive search to the left
+        if (node.entry.getKey().compareTo(key) > 0) {   //recursive search to the left
             node.left = insertRecursive(node.left, key, value);
-        } else if (key.compareTo(node.entry.getKey()) > 0) {        //recursive search to the right
+        } else if (node.entry.getKey().compareTo(key) < 0) {        //recursive search to the right
             node.right = insertRecursive(node.right, key, value);
         }
         return node;
