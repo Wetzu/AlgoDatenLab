@@ -13,13 +13,14 @@ public class Hashtable<K extends Comparable<K>, V> extends AbstractHashMap<K, V>
      * @param   o of type Object (Key)
      * @return  value of generic type V if found, else null
      */
-    @SuppressWarnings("unchecked")
-    public V get(Object o) {
-        if( o == null) {        //checking for null
+    @SuppressWarnings({"unchecked", "ConstantConditions"})
+    public V get( Object o) {
+        K k = (K) o;
+        if( k == null) {        //checking for null
             throw new NullPointerException();   //throwing exception
         }
         for (Entry entry : hashtable) { //iterating through the entry's in the hashtable
-            if( entry != null && entry.getKey() == o) {
+            if( entry != null && entry.getKey().equals(k)) {
                 return (V) entry.getValue();    //returning Entry with matching Key
             }
         }
@@ -36,62 +37,33 @@ public class Hashtable<K extends Comparable<K>, V> extends AbstractHashMap<K, V>
      * DictionaryFullException is thrown
      */
     public V put(K key, V value) throws DictionaryFullException {
-        int index = 0;
+        int index, probing = 0;
         SimpleEntry<K, V> entry = new SimpleEntry<>(key, value);
         do {
-            index = hashProbe(key, index);
-            if ( hashtable[index] == null) {    //checking if a value is stored behind the hash value of Key
-                hashtable[index] = entry;
+            index = hashProbe(key, probing);    //getting index based on hash and the current probeWidth
+            if ( hashtable[index] == null) {    //checking if index doesn't hold an entry yet
+                hashtable[index] = entry;       //storing the entry in the hashtable
                 size++;
                 return null;    //returning null as there is no prevoius
             }
-            if( hashtable[index].getKey().compareTo(key) == 0) {
+            if( hashtable[index].getKey().compareTo(key) == 0) {    //checking if Keys are equal
                 V oldValue = hashtable[index].getValue();
-                hashtable[index].setValue(value);
-                return oldValue;
+                hashtable[index].setValue(value);   //storing newValue
+                return oldValue;        //returning oldValue
             }
-            index++;
-        } while (index < hashtable.length);
-        throw new DictionaryFullException();
-    }
-
-
-//    @SuppressWarnings("unchecked")
-//    private V rekursivesEinfuegen(SimpleEntry entry, int index) {
-//        if (size == hashtable.length || sondierungsschritt == hashtable.length) {
-//            throw new DictionaryFullException();
-//        } else if(hashtable[index] == null) {
-//            hashtable[index] = entry;
-//            size++;
-//            return null;
-//        } else if (hashtable[index].getKey() == entry.getKey()) {
-//            V oldValue = hashtable[index].getValue();
-//            hashtable[index] = entry;
-//            return oldValue;
-//        } else {
-//            sondierungsschritt++;
-//            int newIndex = hashProbe((K)entry.getKey(), sondierungsschritt);
-//            rekursivesEinfuegen(entry, newIndex);
-//        }
-//        return null;
-//    }
-
-    /**
-     * Hash Funktion: Berechnung des Index durch den key mod m, dabei ist m die Länge der hashtable
-     * @param   key   übergebener Schlüssel vom Typ K vom Objekt SimpleEntry
-     * @return  errechneter Index
-     */
-    private int hash(K key) {
-        return Math.abs(key.hashCode() % hashtable.length);
+            probing++;    //iterating
+        } while (probing < hashtable.length);
+        throw new DictionaryFullException();    //less than 50% free indices, dictionary is not necessarily
+                                                //completely filled, current hash didn't find a free index
     }
     /**
-        Hash Funktion mit Sondierung
-        @param  key                     übergebener Schlüssel vom Typ K vom Objekt SimpleEntry
-        @param  sondierungsschritt      wird bei Kollision um eins erhöht
-        @return neu errechneter Index
+        hash function implementing quadratic probing
+        @param  key of generic Type K, get's hashed
+        @param  probeWidth gets incremented with each collision, responsible for the quadratic growth
+        @return the new index, based on the hash value and the current probeWidth
      */
-    private int hashProbe(K key, int sondierungsschritt) {
-        return ( ( hash(key) + sondierungsschritt * sondierungsschritt ) % hashtable.length);
+    private int hashProbe(K key, int probeWidth) {
+        return (Math.abs(key.hashCode()) + (int) Math.pow(probeWidth, 2)) % hashtable.length;
     }
 }
 
